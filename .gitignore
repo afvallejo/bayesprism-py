@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+.DS_Store
+
+# Generated local artifacts
+/tmp/
+/tmp_golden/
+/tests/data/golden/large/

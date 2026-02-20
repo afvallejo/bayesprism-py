@@ -1,0 +1,2 @@
+chain_length,burn_in,thinning,seed,alpha,optimizer,maxit
+1200,600,3,17,1,MLE,4000
