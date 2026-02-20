@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from bayesprism.qc import get_exp_stat
+from bayesprism.qc import _bh_adjust, get_exp_stat
 
 
 def _parallel_dataset() -> tuple[pd.DataFrame, list[str], list[str]]:
@@ -99,6 +99,32 @@ def test_get_exp_stat_parallel_matches_single_core() -> None:
         )
 
 
+def test_get_exp_stat_excludes_same_cell_type_pairs() -> None:
+    sc_dat = pd.DataFrame(
+        [
+            [40, 5, 2],
+            [39, 6, 1],
+            [11, 30, 4],
+            [10, 31, 3],
+        ],
+        columns=["g1", "g2", "g3"],
+    )
+    labels_type = ["A", "A", "A", "A"]
+    labels_state = ["A_s1", "A_s1", "A_s2", "A_s2"]
+
+    out = get_exp_stat(
+        sc_dat=sc_dat,
+        cell_type_labels=labels_type,
+        cell_state_labels=labels_state,
+        pseudo_count=0.1,
+        cell_count_cutoff=1,
+        n_cores=1,
+    )
+
+    assert out["A"]["pval.up.min"].isna().all()
+    assert out["A"]["min.lfc"].isna().all()
+
+
 def test_get_exp_stat_library_size_scaling_invariant() -> None:
     sc_dat = pd.DataFrame(
         [
@@ -157,3 +183,10 @@ def test_get_exp_stat_low_count_second_state_filter() -> None:
 
     assert cutoff3["A"]["pval.up.min"].isna().all()
     assert cutoff1["A"]["pval.up.min"].notna().any()
+
+
+def test_bh_adjust_known_values() -> None:
+    p_values = np.array([0.01, 0.02, np.nan, 0.03, 1.0], dtype=float)
+    adjusted = _bh_adjust(p_values)
+    expected = np.array([0.04, 0.04, np.nan, 0.04, 1.0], dtype=float)
+    np.testing.assert_allclose(adjusted, expected, atol=1e-12, rtol=0, equal_nan=True)

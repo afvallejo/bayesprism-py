@@ -1,16 +1,16 @@
 # bayesprism-py
 
-Python translation scaffold for the BayesPrism R package with parity-first goals.
+Python-first BayesPrism implementation scaffold with deterministic regression tests.
 
 ## Scope in this bootstrap
 - Standalone Python package `bayesprism`
-- R-parity API surface for core workflows
+- Stable API surface for core workflows
 - Deterministic helper ports (preprocess, posterior helpers, reference transforms)
 - Gibbs sampling scaffold and deconvolution workflow skeleton
-- Golden fixture pipeline and tests against compact R outputs
+- Synthetic fixture pipeline and regression tests
 
 ## Status
-This repository is scaffolded for parity-driven porting. Differential-expression helpers are implemented with R-parity fixtures; advanced features such as embedding-learning internals remain staged.
+This repository is scaffolded for incremental feature completion. Differential-expression helpers are implemented in pure Python; advanced embedding internals remain staged.
 
 ## Quick start
 ```bash
@@ -20,6 +20,7 @@ pip install -e .[dev]
 pytest -q
 ```
 
-## Source of truth
-- Upstream R package: `BayesPrism/`
-- Priority for behavior: R code > tutorials > paper
+## Project direction
+- Pure Python implementation only
+- Regression validation via committed synthetic fixtures
+- Staged delivery for deconvolution, spatial workflows, and embedding APIs

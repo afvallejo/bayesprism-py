@@ -8,13 +8,13 @@ import pandas as pd
 
 from bayesprism.qc import get_exp_stat, select_marker
 
-FIXTURE_DIR = Path(__file__).resolve().parents[1] / "data" / "golden" / "de_small"
+FIXTURE_DIR = Path(__file__).resolve().parents[1] / "data" / "fixtures" / "de_small"
 
 
 def _load_fixture() -> tuple[dict[str, np.ndarray], dict[str, object]]:
-    npz = np.load(FIXTURE_DIR / "golden_de_small.npz", allow_pickle=True)
+    npz = np.load(FIXTURE_DIR / "de_fixture.npz", allow_pickle=True)
     metadata = json.loads(
-        (FIXTURE_DIR / "golden_de_small_metadata.json").read_text(encoding="utf-8")
+        (FIXTURE_DIR / "de_fixture_metadata.json").read_text(encoding="utf-8")
     )
     return {k: npz[k] for k in npz.files}, metadata
 
@@ -48,7 +48,7 @@ def _run_python_de(
     return stat, marker
 
 
-def test_get_exp_stat_matches_r_golden() -> None:
+def test_get_exp_stat_matches_de_fixture() -> None:
     data, metadata = _load_fixture()
     stat, _ = _run_python_de(data, metadata)
 
@@ -69,7 +69,7 @@ def test_get_exp_stat_matches_r_golden() -> None:
         )
 
 
-def test_select_marker_matches_r_golden() -> None:
+def test_select_marker_matches_de_fixture() -> None:
     data, metadata = _load_fixture()
     _, marker = _run_python_de(data, metadata)
 

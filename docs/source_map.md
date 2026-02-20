@@ -1,39 +1,34 @@
-# BayesPrism Source Map (R -> Python)
+# BayesPrism Python Architecture Map
 
 ## Core object model
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/classes.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/models.py`
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/models.py`
+- Typed containers and shape contracts for references, posterior summaries, and workflow outputs.
 
-## Preprocessing
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/new_prism.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/preprocess.py`
-- API constructor wrapper: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/api.py`
+## Preprocessing and input validation
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/preprocess.py`
+- Matrix coercion, normalization, label collapse, and bulk outlier filtering.
 
 ## Gibbs routines
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/run_gibbs.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/gibbs.py`
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/gibbs.py`
+- Sampling kernels (`Z`, `theta`), retained-index handling, and reference dispatch.
 
-## Posterior containers and merges
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/JointPost_functions.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/posterior.py`
+## Posterior construction
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/posterior.py`
+- Joint/theta posterior builders and state-to-type merge utilities.
 
-## Reference update
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/update_reference.R`
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/optim_functions_MAP.R`
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/optim_functions_MLE.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/reference_update.py`
+## Reference update and optimization
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/reference_update.py`
+- MAP/MLE wrappers, transformed reference construction, and update orchestration.
 
-## Top-level workflow APIs
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/run_prism.R`
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/run_prism_st.R`
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/extract_result.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/api.py`
+## Public workflow API
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/api.py`
+- Top-level constructors and workflows: `new_prism`, `run_prism`, `run_prism_st`, `update_theta`.
 
-## Embedding learning
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/embedding_learning.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/embedding.py`
+## Differential-expression and marker helpers
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/qc.py`
+- `get_exp_stat`: library-size normalization, one-sided pairwise Welch tests, Berger max-p aggregation, and BH correction.
+- `select_marker`: marker extraction by `pval.up.min` and `min.lfc` thresholds.
 
-## QC utilities
-- R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/process_input.R`
-- Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/qc.py`
-- Notes: `get_exp_stat` mirrors R preprocessing and one-sided pairwise Welch tests, then reproduces the `combineMarkers(..., pval.type=\"all\")` aggregation path used by BayesPrism.
+## Embedding API stubs
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/embedding.py`
+- Public signatures and staged placeholders for future embedding internals.

@@ -78,7 +78,7 @@ def log_posterior_gamma_grad(
 
 
 def transform_phi_transpose(phi_transpose: np.ndarray, gamma: np.ndarray) -> np.ndarray:
-    """Apply one gamma shared by all rows, following R implementation shape semantics."""
+    """Apply one shared gamma vector using transposed shape semantics."""
     # phi_transpose shape is G x T. Output is T x G.
     n_genes, n_types = phi_transpose.shape
     psi = np.zeros((n_types, n_genes), dtype=float)

@@ -1,0 +1,30 @@
+{
+  "seed": 20260220,
+  "labels": {
+    "cell_type_label": [
+      "A",
+      "A",
+      "B",
+      "B",
+      "C",
+      "C"
+    ],
+    "cell_state_label": [
+      "A_s1",
+      "A_s2",
+      "B_s1",
+      "B_s2",
+      "C_s1",
+      "C_s2"
+    ]
+  },
+  "controls": {
+    "chain_length": 80,
+    "burn_in": 20,
+    "thinning": 4,
+    "seed": 77,
+    "alpha": 1.0,
+    "optimizer": "MAP",
+    "maxit": 200
+  }
+}

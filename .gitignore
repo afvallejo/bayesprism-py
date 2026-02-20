@@ -12,5 +12,5 @@ dist/
 
 # Generated local artifacts
 /tmp/
-/tmp_golden/
-/tests/data/golden/large/
+/tmp_fixtures/
+/tests/data/fixtures/large/

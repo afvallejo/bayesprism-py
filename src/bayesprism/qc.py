@@ -57,7 +57,7 @@ def _bh_adjust(p_values: np.ndarray) -> np.ndarray:
 
 
 def _berger_combine(p_values: list[np.ndarray]) -> np.ndarray:
-    """Berger combination used by scran for pval.type='all'."""
+    """Berger max-p aggregation for one-vs-many marker summaries."""
     if not p_values:
         return np.array([], dtype=float)
 
@@ -98,7 +98,7 @@ def _unique_ct_to_state(
     cell_type_labels: list[str],
     cell_state_labels: list[str],
 ) -> pd.DataFrame:
-    """R-like unique(cbind(cell.type, cell.state)) preserving first occurrence."""
+    """Unique cell-type/state pairs preserving first occurrence."""
     out = pd.DataFrame(
         {
             "cell_type": cell_type_labels,
@@ -205,7 +205,7 @@ def _combine_markers_all(
     de_lists: list[pd.DataFrame],
     pairs: pd.DataFrame,
 ) -> dict[str, pd.DataFrame]:
-    """Subset of scran::combineMarkers behavior used by get.exp.stat."""
+    """Aggregate per-pair DE tables into host-state marker summaries."""
     if len(de_lists) != pairs.shape[0]:
         raise ValueError("nrow(pairs) must equal length(de_lists)")
     if not de_lists:

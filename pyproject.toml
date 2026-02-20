@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "bayesprism"
 version = "0.1.0"
-description = "Parity-first Python translation scaffold of BayesPrism"
+description = "Pure Python BayesPrism workflow scaffold"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "GPL-2.0-or-later OR GPL-3.0-or-later" }
 authors = [
-  { name = "BayesPrism Python Translation" }
+  { name = "bayesprism-py maintainers" }
 ]
 dependencies = [
   "numpy>=1.24",

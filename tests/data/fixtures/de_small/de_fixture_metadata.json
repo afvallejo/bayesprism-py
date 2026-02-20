@@ -1,0 +1,9 @@
+{
+  "seed": 20260221,
+  "params": {
+    "pseudo_count": 0.1,
+    "cell_count_cutoff": 3,
+    "pval_max": 0.05,
+    "lfc_min": 0.2
+  }
+}

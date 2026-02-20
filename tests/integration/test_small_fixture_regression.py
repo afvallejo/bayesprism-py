@@ -8,12 +8,12 @@ import pandas as pd
 
 from bayesprism.api import new_prism, run_prism
 
-FIXTURE_DIR = Path(__file__).resolve().parents[1] / "data" / "golden" / "small"
+FIXTURE_DIR = Path(__file__).resolve().parents[1] / "data" / "fixtures" / "small"
 
 
 def _load_fixture() -> tuple[dict[str, np.ndarray], dict[str, object]]:
-    npz = np.load(FIXTURE_DIR / "golden_small.npz", allow_pickle=True)
-    metadata = json.loads((FIXTURE_DIR / "golden_small_metadata.json").read_text(encoding="utf-8"))
+    npz = np.load(FIXTURE_DIR / "small_fixture.npz", allow_pickle=True)
+    metadata = json.loads((FIXTURE_DIR / "small_fixture_metadata.json").read_text(encoding="utf-8"))
     return {k: npz[k] for k in npz.files}, metadata
 
 
@@ -24,7 +24,7 @@ def _map_from_arrays(cell_types: np.ndarray, cell_states: np.ndarray) -> dict[st
     return out
 
 
-def test_new_prism_matches_r_golden_deterministic() -> None:
+def test_new_prism_matches_small_fixture_deterministic() -> None:
     data, metadata = _load_fixture()
 
     reference = pd.DataFrame(
@@ -66,7 +66,7 @@ def test_new_prism_matches_r_golden_deterministic() -> None:
     assert prism.map == expected_map
 
 
-def test_run_prism_matches_r_golden_stochastic_tolerance() -> None:
+def test_run_prism_matches_small_fixture_regression() -> None:
     data, metadata = _load_fixture()
 
     reference = pd.DataFrame(
