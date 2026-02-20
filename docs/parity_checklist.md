@@ -8,12 +8,12 @@
 - MAP/MLE reference transform wrappers
 - `get_fraction` / `get_exp`
 - `cleanup_genes`, `select_gene_type`, `select_marker`
+- `get_exp_stat` differential-expression helper with strict R-style output schema
 
 ## Staged / partial
 - Runtime estimation and multiprocessing parity behavior in Gibbs loops
 - Tumor-mode edge paths in `run_prism_st`
 - Full embedding learning (`learn_embedding`, `learn_embedding_nmf`)
-- `get_exp_stat` scran-equivalent differential expression helper
 - Plot utility parity (`plot_functions.R`)
 
 ## Validation strategy

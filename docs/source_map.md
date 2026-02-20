@@ -36,3 +36,4 @@
 ## QC utilities
 - R: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism/R/process_input.R`
 - Python: `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/src/bayesprism/qc.py`
+- Notes: `get_exp_stat` mirrors R preprocessing and one-sided pairwise Welch tests, then reproduces the `combineMarkers(..., pval.type=\"all\")` aggregation path used by BayesPrism.

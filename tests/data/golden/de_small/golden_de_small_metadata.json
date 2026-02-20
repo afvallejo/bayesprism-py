@@ -1,0 +1,23 @@
+{
+  "params": {
+    "pseudo_count": 0.1,
+    "cell_count_cutoff": 3.0,
+    "pval_max": 0.05,
+    "lfc_min": 0.1
+  },
+  "stat_names": [
+    "A",
+    "B",
+    "C"
+  ],
+  "files": [
+    "labels.csv",
+    "marker_genes.csv",
+    "marker_matrix.csv",
+    "params.csv",
+    "sc_dat.csv",
+    "stat_A.csv",
+    "stat_B.csv",
+    "stat_C.csv"
+  ]
+}

@@ -10,7 +10,7 @@ Python translation scaffold for the BayesPrism R package with parity-first goals
 - Golden fixture pipeline and tests against compact R outputs
 
 ## Status
-This repository is scaffolded for parity-driven porting. Some advanced features (embedding learning internals and differential-expression helpers) are intentionally staged and currently raise `NotImplementedError`.
+This repository is scaffolded for parity-driven porting. Differential-expression helpers are implemented with R-parity fixtures; advanced features such as embedding-learning internals remain staged.
 
 ## Quick start
 ```bash
