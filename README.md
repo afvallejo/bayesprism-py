@@ -50,6 +50,32 @@ Notes:
 - `real_subset` loads a large tutorial matrix and then applies deterministic stratified subsetting.
 - Full tutorial-scale deconvolution is intentionally not the default due runtime and memory cost.
 
+## Equivalence notebook
+Notebook path:
+- `/Users/andresvallejo/Documents/00-Bioinformatics/bayesprism-py/notebooks/r_equivalence_deconvolution.ipynb`
+
+Purpose:
+- Run the Python and reference implementations on the same fixture input.
+- Compare `phi`, `theta`, and `get_exp` outputs with explicit tolerances.
+- Emit a machine-readable line: `EQUIVALENCE_REPORT_JSON=...`.
+
+Environment controls:
+- `BAYESPRISM_EQ_FIXTURE_DIR` (default: `tests/data/fixtures/small`)
+- `BAYESPRISM_R_SOURCE_DIR` (default: `/Users/andresvallejo/Documents/00-Bioinformatics/BayesPrism/BayesPrism`)
+- `BAYESPRISM_EQ_INSTALL_R_DEPS` (default: `1`)
+- `BAYESPRISM_EQ_RUN_REAL_SUBSET` (default: `0`)
+
+Run command:
+```bash
+BAYESPRISM_EQ_INSTALL_R_DEPS=1 \
+BAYESPRISM_EQ_RUN_REAL_SUBSET=0 \
+jupyter lab notebooks/r_equivalence_deconvolution.ipynb
+```
+
+Notes:
+- First run can take longer while reference dependencies are installed.
+- This notebook is manual/on-demand and is not run in CI.
+
 ## Project direction
 - Pure Python implementation only
 - Regression validation via committed synthetic fixtures
